@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Quiz App</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet"
+    type="text/css" />
+  <link href="app.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <header>
+    <h1>General Trivia Quiz!</h1>
+  </header>
+  <main>
+    <div>
+      <form id="js-start-quiz-form"></form>
+      <button type="submit">Start Quiz</button>
+    </div>
+    <div>
+      <ul>
+        <li>1 of 10</li>
+        <li>0/10</li>
+      </ul>
+      
+      <form action="/action_page.php">
+        <p>Question 1: lorem ipsum?</p>
+        <input type="radio" id="A" name="answer" value="answer A">
+        <label for="A">Answer A</label>
+        <input type="radio" id="B" name="answer" value="answer B">
+        <label for="B">Answer B</label>
+        <input type="radio" id="C" name="answer" value="answer C">
+        <label for="C">Answer C</label>
+        <input type="radio" id="D" name="answer" value="answer A">
+        <label for="D">Answer D</label>
+      </form>
+      <form id="js-question-submit"></form>
+      <button type="submit">Submit Answer</button>
+    </div>
+
+    <div>
+      <ul>
+        <li>1 of 5</li>
+        <li>1/5</li>
+      </ul>
+      <h2>Correct!</h2>
+      <form action="/action_page.php">
+        <p>Question 1: lorem ipsum?</p>
+        <input type="radio" id="A" name="answer" value="answer A">
+        <label for="A">Answer A</label>
+        <input type="radio" id="B" name="answer" value="answer B">
+        <label for="B">Answer B</label>
+        <input type="radio" id="C" name="answer" value="answer C">
+        <label for="C">Answer C</label>
+        <input type="radio" id="D" name="answer" value="answer A">
+        <label for="D">Answer D</label>
+      </form>
+      <form id="js-question-submit"></form>
+      <button type="submit">Next Question</button>
+    </div>
+
+    <div>
+      <ul>
+        <li>1 of 5</li>
+        <li>0/5</li>
+      </ul>
+      <h2>Incorrect!</h2>
+      <form action="/action_page.php">
+        <p>Question 1: lorem ipsum?</p>
+        <input type="radio" id="A" name="answer" value="answer A">
+        <label for="A">Answer A</label>
+        <input type="radio" id="B" name="answer" value="answer B">
+        <label for="B">Answer B</label>
+        <input type="radio" id="C" name="answer" value="answer C">
+        <label for="C">Answer C</label>
+        <input type="radio" id="D" name="answer" value="answer A">
+        <label for="D">Answer D</label>
+      </form>
+      <form id="js-question-submit"></form>
+      <button type="submit">Next Question</button>
+    </div>
+    <div>
+      <ul>
+        <li>Complete</li>
+        <li>3/5</li>
+      </ul>
+      <h3>You got x/5 correct</h3>
+      <form id="js-try-again"></form>
+      <button type="submit">Try Again?</button>
+    </div>
+
+
+
+  </main>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.js" crossorigin="anonymous"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
