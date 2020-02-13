@@ -6,10 +6,26 @@
   * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
   *
 */
+* {
+  background-color: lightblue;
+}
+
+header {
+  text-align: center;
+}
+
+h1 {
+  display: inline-block;
+}
+
+main {
+  text-align: center;
+}
 
 #start-view {
   display: flex;
-  border: 1px solid black;
+  justify-content: center;
+  align-items: center;
 }
 
 #question-view {

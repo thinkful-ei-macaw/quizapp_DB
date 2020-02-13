@@ -8,7 +8,7 @@ const store = {
   questions: [
     {
       question: 'What is the Capital of India?',
-      answer: [
+      answers: [
         'Bangladesh',
         'New Delhi',
         'Caracas',
@@ -61,9 +61,22 @@ const store = {
   questionNumber: 0,
   score: 0
 };
-  
+
+
 function generateAnswerList(answers){
   //template generator 1
+}
+
+
+
+function renderStart(){
+  console.log('Generating start view')
+  const start = `
+  <div id="start-view">
+  <form id="js-start-quiz-form"></form>
+  <button type="submit">Start Quiz</button>
+</div>`;
+  $('.js-quiz-app').html(start);
 }
 
 function renderQuestionText(){
@@ -73,12 +86,17 @@ function renderQuestionText(){
 // Event handlers
 function handleAnswerSubmitted() {
   $('.user-controls').on('click', '.submit-answer', () => {
+    
     // Retrieve answer identifier of user-checked radio btn
     // Perform check: User answer === Correct answer?
     // Update STORE and render appropriate section
   });
 }
-  
+
+function handleQuiz() {
+  renderStart();
+}
+$(handleQuiz);
 $(handleAnswerSubmitted);
 
 /**
