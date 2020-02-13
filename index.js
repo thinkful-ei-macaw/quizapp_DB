@@ -67,6 +67,17 @@ function generateAnswerList(answers){
   //template generator 1
 }
 
+function renderStart(){
+  return`
+   <h1>General Trivia Quiz!</h1>
+  </header>
+  <main>
+    <div>
+      <form id="js-start-quiz-form"></form>
+      <button type="submit">Start Quiz</button>
+    </div>`;
+}
+
 function renderQuestionText(){
   //HTML templates go here and called back
 }
