@@ -6,3 +6,27 @@
   * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
   *
 */
+#start-view {
+  display: flex;
+  border: 1px solid black;
+}
+
+#question-view {
+  display: flex;
+  border: 1px solid black;
+}
+
+#feedback-view-correct {
+  display: flex;
+  border: 1px solid black;
+}
+
+#feedback-view-incorrect {
+  display: flex;
+  border: 1px solid black;
+}
+
+#results-view {
+  display: flex;
+  border: 1px solid black;
+}
