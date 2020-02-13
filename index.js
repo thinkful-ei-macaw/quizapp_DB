@@ -61,7 +61,8 @@ const store = {
   questionNumber: 0,
   score: 0
 };
-  
+
+
 function generateAnswerList(answers){
   //template generator 1
 }
@@ -73,6 +74,7 @@ function renderQuestionText(){
 // Event handlers
 function handleAnswerSubmitted() {
   $('.user-controls').on('click', '.submit-answer', () => {
+    
     // Retrieve answer identifier of user-checked radio btn
     // Perform check: User answer === Correct answer?
     // Update STORE and render appropriate section
