@@ -68,25 +68,24 @@ const store = {
 // first function. gets calledback. populates the intial screen
 // with the general trivia quiz title and the start quiz button
 
-function renderStart(){
-  console.log('Generating start view');
-  const start = `
+/***********Generate Functions *************/
+
+function generateStartView() {
+  console.log('Generating Start View');
+  return `
   <div id="start-view">
-    <h3>How much do you really know?</h3>
-    <form id="js-start-quiz">
-      <button type="submit">Start Quiz</button>
-    </form>
-</div>`;
-  $('.js-quiz-app').html(start);
+  <h3>How much do you really know?</h3>
+  <form id="js-start-quiz">
+    <button type="submit">Start Quiz</button>
+  </form>
+  </div>
+  `;
 }
 
-// this function renders the html code that populates when
-// it is called inside of handleQuizStart
-
-function renderQuestionText(){
-  console.log('Generating questions view')
+function generateQuestionView() {
+  console.log('Generating Question View');
   const question = store.questions[store.questionNumber];
-  const questions = `
+  return `
     <div id="question-view">
       <ul>
         <li>Question ${store.questionNumber + 1} of ${store.questions.length}</li>
@@ -108,48 +107,11 @@ function renderQuestionText(){
           <button type="submit">Submit Answer</button>
         </form>
       </div>`;
-  $('.js-quiz-app').html(questions);
 }
 
-// this is the function that runs when the start quiz button
-// is clicked or engaged by the keyboard
-
-function handleQuizStart() {
-  $('.js-quiz-app').on('submit', '#js-start-quiz', function(event) {
-    event.preventDefault();
-    console.log('`handleQuizStart` ran');
-    renderQuestionText();
-  });
-}
-
-// Retrieve answer identifier of user-checked radio btn
-// Perform check: User answer === Correct answer?
-// Update STORE and render appropriate section
-
-function handleAnswerSubmitted() {
-  $('.js-quiz-app').on('click', '#js-question-submit', () => {
-    event.preventDefault();
-    console.log('`handleAnswerSubmitted` ran')
-    const selValue = $("input[type='radio']:checked").val();
-    console.log(selValue);
-    if (selValue === `${store.questions[store.questionNumber].correctAnswer}` && selValue !== undefined) {
-      store.score++;
-      renderFeedbackPageCorrect();
-    } else if (selValue !== `${store.questions[store.questionNumber].correctAnswer}` && selValue !== undefined) {
-      renderFeedbackPageIncorrect();
-    }
-});
-}
-
-// this is the function that renders the html code that populates
-// when it is called inside of whatever i call the function that
-// happens when an answer is submitted. it will need to publish
-// the feedback (correct) and provide a button to go
-// to the next question
-
-function renderFeedbackPageCorrect() {
-  console.log('Generating feedback correct view');
-  const correct = `
+function generateFeedbackViewCorrect() {
+  console.log('Generating Feedback Correct view');
+  return `
   <div id="feedback-view-correct">
     <ul>
       <li>Question ${store.questionNumber + 1} of ${store.questions.length}</li>
@@ -161,18 +123,11 @@ function renderFeedbackPageCorrect() {
       <button type="submit">Next Question</button>
     </form>
   </div>`;
-$('.js-quiz-app').html(correct);
 }
 
-// this is the function that renders the html code that populates
-// when it is called inside of whatever i call the function that
-// happens when an answer is submitted. it will need to publish
-// the feedback (incorrect), tell the user the correct answer
-// and provide a button to go to the next question
-
-function renderFeedbackPageIncorrect() {
-  console.log('Generating feedback incorrect view');
-  const incorrect = `
+function generateFeedbackViewIncorrect() {
+  console.log('Generating Feedback Incorrect View');
+  return `
   <div id="feedback-view-incorrect">
     <ul>
       <li>Question ${store.questionNumber + 1} of ${store.questions.length}</li>
@@ -184,54 +139,114 @@ function renderFeedbackPageIncorrect() {
       <button type="submit">Next Question</button>
     </form>
   </div>`;
-$('.js-quiz-app').html(incorrect);
+}
 
-//feedback page that displays question right/wrong
-// Retrieve answer identifier of user-checked radio btn
-// Perform check: User answer === Correct answer?
-// Update STORE and render appropriate section
-};
+function generateFinalView() {
+  console.log('Generate Final View');
+  return `
+  <div>
+    <h2>final score: ${store.score}</h2>
+    <form id="js-try-again">
+      <button type="submit">Try Again?</button>
+    </form>
+  </div>
+  `;
+}
 
+/***********Render Functions **********/
 
-// this function should populate the next question when pressed
+function renderStart(){
+  console.log('`renderStart` ran');
+  $('.js-quiz-app').html(generateStartView());
+}
 
-function generateNextQuestion() {
-  $('body').on('submit', '#js-next-question', (event) => {
-    console.log('Generating next question')
-    event.preventDefault();
-    store.questionNumber++;
-    if(store.questionNumber < store.questions.length){
-      renderQuestionText();
-    }else{
-      renderFinalScore();
-    };
-  })
+function renderQuestionView(){
+  console.log('Rendering Question');
+  $('.js-quiz-app').html(generateQuestionView());
+}
+
+function renderFeedbackViewCorrect() {
+  console.log('Rendering Feedback Correct View');
+  $('.js-quiz-app').html(generateFeedbackViewCorrect());
+}
+
+function renderFeedbackViewIncorrect() {
+  console.log('Rendering Feedback Incorrect View');
+  $('.js-quiz-app').html(generateFeedbackViewIncorrect());
+}
+
+function renderFinalView(){
+  console.log('Rendering Final View');
+  $('.js-quiz-app').html(generateFinalView());
 }
 
 
 
-function renderFinalScore(){
-const finalScore=`
-<div>
-  <h2>final score: ${store.score}</h2>
-  <form id="js-try-again">
-    <button type="submit">Try Again?</button>
-  </form>
-</div>
-`
+/***********Handle Functions **********/
 
-  $('.js-quiz-app').html(finalScore);
-};
+// this is the function that runs when the start quiz button
+// is clicked or engaged by the keyboard
+
+function handleQuizStart() {
+  $('.js-quiz-app').on('submit', '#js-start-quiz', function(event) {
+    event.preventDefault();
+    console.log('`handleQuizStart` ran');
+    renderQuestionView();
+  });
+}
+
+// Retrieve answer identifier of user-checked radio btn
+// Perform check: User answer === Correct answer?
+// Update STORE and render appropriate section
+
+function handleAnswerSubmitted() {
+  $('.js-quiz-app').on('submit', '#js-question-submit', () => {
+    event.preventDefault();
+    console.log('`handleAnswerSubmitted` ran');
+    const selValue = $('input[type="radio"]:checked').val();
+    console.log(selValue);
+    if (selValue === `${store.questions[store.questionNumber].correctAnswer}` && selValue !== undefined) {
+      store.score++;
+      renderFeedbackViewCorrect();
+    } else if (selValue !== `${store.questions[store.questionNumber].correctAnswer}` && selValue !== undefined) {
+      renderFeedbackViewIncorrect();
+    }
+  });
+}
+
+function handleNextQuestion() {
+  $('.js-quiz-app').on('submit', '#js-next-question', (event) => {
+    event.preventDefault();
+    store.questionNumber++;
+    if (store.questionNumber < store.questions.length){
+      console.log('Rendering Next question');
+      renderQuestionView();
+    } else {
+      renderFinalView();
+    }
+  });
+}
+
+function handleTryAgain() {
+  $('.js-quiz-app').on('submit', '#js-try-again', (event) =>{
+    event.preventDefault();
+    store.quizStarted = false;
+    store.score = 0;
+    store.questionNumber = 0;
+    console.log('`handleTryAgain` ran');
+    renderStart();
+  });
+}
 
 function handleQuiz() {
   renderStart();
   handleQuizStart();
-  generateNextQuestion();
+  handleNextQuestion();
+  handleAnswerSubmitted();
+  handleTryAgain();
 }
 
-
 $(handleQuiz);
-$(handleAnswerSubmitted);
 
 /**
    *
