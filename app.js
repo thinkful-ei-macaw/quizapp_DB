@@ -129,13 +129,13 @@ function handleAnswerSubmitted() {
     event.preventDefault();
     console.log('`handleAnswerSubmitted` ran')
     const selValue = $("input[type='radio']:checked").val();
-    if (selValue === `${store.questions[0].correctAnswer}`) {
+    if (selValue === undefined) {} if (selValue === `${store.questions[0].correctAnswer}`) {
       renderFeedbackPageCorrect();
     } else if (selValue !== `${store.questions[0].correctAnswer}`) {
       renderFeedbackPageIncorrect();
     }
-  });
-};
+});
+}
 
 // this is the function that renders the html code that populates
 // when it is called inside of whatever i call the function that
@@ -202,6 +202,10 @@ function renderFeedbackPageIncorrect() {
 </div>`;
 $('.js-quiz-app').html(incorrect);
 }
+
+// this function should populate the next question when pressed
+
+function generateNextQuestion() {}
 
 function generateAnswerList(answers){
   //template generator 1
