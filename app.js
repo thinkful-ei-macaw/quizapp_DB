@@ -132,7 +132,7 @@ function generateFeedbackViewCorrect() {
     <h2>Correct!</h2>
 
     <form id="js-next-question">
-      <button type="submit">Next Question</button>
+      <button type="submit">Continue</button>
     </form>
   </div>`;
 }
@@ -148,7 +148,7 @@ function generateFeedbackViewIncorrect() {
     <h2>Incorrect! The answer is ${store.questions[store.questionNumber].correctAnswer}.</h2>
 
     <form id="js-next-question">
-      <button type="submit">Next Question</button>
+      <button type="submit">Continue</button>
     </form>
   </div>`;
 }
