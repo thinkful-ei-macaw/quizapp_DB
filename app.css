@@ -7,7 +7,8 @@
   *
 */
 * {
-  background-color: lightblue;
+  background-color: #add8e6;
+  color: #002627;
 }
 
 header {
@@ -44,12 +45,10 @@ li {
 
 #feedback-view-correct {
   display: flex;
-  border: 1px solid black;
 }
 
 #feedback-view-incorrect {
-  display: flex;
-  border: 1px solid black;
+  display: inline-block;
 }
 
 #results-view {
