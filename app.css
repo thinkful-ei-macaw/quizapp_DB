@@ -6,14 +6,50 @@
   * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
   *
 */
+/*mobile first*/
+
+* {
+  box-sizing: border-box;
+}
+  
+body {
+  background-color: #d6d6d6;
+  font-family: 'Lucida Sans';
+  color: #4b6319;
+  font-size: 24;
+  font-weight: 600
+}
+
+header {
+  text-align: center;
+}
+
+h1 {
+  display: inline-block;
+}
+
+main {
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  display: flexbox;
+  justify-content: space-between;
+}
+
+li {
+  justify-self: inherit;
+}
+
 #start-view {
   display: flex;
-  border: 1px solid black;
+  justify-content: center;
+  align-items: center;
 }
 
 #question-view {
-  display: flex;
-  border: 1px solid black;
+  display: inline-block;
 }
 
 #feedback-view-correct {
@@ -29,4 +65,33 @@
 #results-view {
   display: flex;
   border: 1px solid black;
+<<<<<<< HEAD
+=======
+}
+
+/*mobile*/
+
+@media (min-width: 700px) {
+  body {
+   width: 80%;
+   margin: 0 auto;
+  }
+
+  .main-nav-list-item {
+    float:left;
+    width: 25%;
+  }
+
+}
+
+/*desktop*/
+@media (min-width: 1024px) {
+
+  .box {
+  width: 29.33%;
+  float: left;
+  margin-right: 6%;
+  }
+
+>>>>>>> 4189e5c88b97609d3fbc983fe242d544335233bc
 }
