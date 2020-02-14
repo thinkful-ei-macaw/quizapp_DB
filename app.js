@@ -57,11 +57,11 @@ const store = {
         'Pluto',
         'Saturn'
       ],
-      correctAnswer: 'Saturn'
+      correctAnswer: 'Jupiter'
     }
   ],
   quizStarted: false,
-  questionNumber: 1,
+  questionNumber: 0,
   score: 0
 };
 
@@ -84,28 +84,29 @@ function renderStart(){
 
 function renderQuestionText(){
   console.log('Generating questions view')
+  const question = store.questions[store.questionNumber];
   const questions = `
-  <div id="js-question-view">
-      <ul>
-        <li>${store.questionNumber} of ${store.questions.length}</li>
-        <li>${store.score}/${store.questions.length}</li>
-      </ul>
-        
-      <form action="/action_page.php">
-        <p>${store.questions[0].question}</p>
-        <input type="radio" id="A" name="answer" value="${store.questions[0].answers[0]}">
-        <label for="A">${store.questions[0].answers[0]}</label>
-        <input type="radio" id="B" name="answer" value="${store.questions[0].answers[1]}">
-        <label for="B">${store.questions[0].answers[1]}</label>
-        <input type="radio" id="C" name="answer" value="${store.questions[0].answers[2]}">
-        <label for="C">${store.questions[0].answers[2]}</label>
-        <input type="radio" id="D" name="answer" value="${store.questions[0].answers[3]}">
-        <label for="D">${store.questions[0].answers[3]}</label>
-      </form>
-      <form id="js-question-submit">
-      <button type="submit">Submit Answer</button>
-      </form>
-    </div>`;
+    <div id="question-view">
+       <ul>
+       <li>${store.questionNumber + 1} of ${store.questions.length}</li>
+     <li>${store.score}/${store.questions.length}</li>
+         </ul>
+      
+        <form action="/action_page.php">
+          <h3>${question.question}</h3>
+          <input type="radio" id="A" name="answer" value="${question.answers[0]}">
+          <label for="A">${question.answers[0]}</label>
+          <input type="radio" id="B" name="answer" value="${question.answers[1]}">
+          <label for="B">${question.answers[1]}</label>
+          <input type="radio" id="C" name="answer" value="${question.answers[2]}">
+          <label for="C">${question.answers[2]}</label>
+          <input type="radio" id="D" name="answer" value="${question.answers[3]}">
+          <label for="D">${question.answers[3]}</label>
+          </form>
+          <form id="js-question-submit">
+          <button type="submit">Submit Answer</button>
+          </form>
+      </div>`;
   $('.js-quiz-app').html(questions);
 }
 
@@ -129,9 +130,11 @@ function handleAnswerSubmitted() {
     event.preventDefault();
     console.log('`handleAnswerSubmitted` ran')
     const selValue = $("input[type='radio']:checked").val();
-    if (selValue === undefined) {} if (selValue === `${store.questions[0].correctAnswer}`) {
+    console.log(selValue);
+    if (selValue === `${store.questions[store.questionNumber].correctAnswer}`) {
+      store.score++;
       renderFeedbackPageCorrect();
-    } else if (selValue !== `${store.questions[0].correctAnswer}`) {
+    } else if (selValue !== `${store.questions[store.questionNumber].correctAnswer}`) {
       renderFeedbackPageIncorrect();
     }
 });
@@ -148,20 +151,20 @@ function renderFeedbackPageCorrect() {
   const correct = `
   <div id="feedback-view-correct">
   <ul>
-    <li>${store.questionNumber} of ${store.questions.length}</li>
+    <li>${store.questionNumber + 1} of ${store.questions.length}</li>
     <li>${store.score}/${store.questions.length}</li>
   </ul>
     <h2>Correct!</h2>
     <form action="/action_page.php">
-    <p>${store.questions[0].question}</p>
-    <input type="radio" id="A" name="answer" value="${store.questions[0].answers[0]}">
-    <label for="A">${store.questions[0].answers[0]}</label>
-    <input type="radio" id="B" name="answer" value="${store.questions[0].answers[1]}">
-    <label for="B">${store.questions[0].answers[1]}</label>
-    <input type="radio" id="C" name="answer" value="${store.questions[0].answers[2]}">
-    <label for="C">${store.questions[0].answers[2]}</label>
-    <input type="radio" id="D" name="answer" value="${store.questions[0].answers[3]}">
-    <label for="D">${store.questions[0].answers[3]}</label>
+    <h3>${store.questions[store.questionNumber].question}</h3>
+    <input type="radio" id="A" name="answer" value="${store.questions[store.questionNumber].answers[0]}">
+    <label for="A">${store.questions[store.questionNumber].answers[0]}</label>
+    <input type="radio" id="B" name="answer" value="${store.questions[store.questionNumber].answers[1]}">
+    <label for="B">${store.questions[store.questionNumber].answers[1]}</label>
+    <input type="radio" id="C" name="answer" value="${store.questions[store.questionNumber].answers[2]}">
+    <label for="C">${store.questions[store.questionNumber].answers[2]}</label>
+    <input type="radio" id="D" name="answer" value="${store.questions[store.questionNumber].answers[3]}">
+    <label for="D">${store.questions[store.questionNumber].answers[3]}</label>
   </form>
   <form id="js-next-question">
   <button type="submit">Next Question</button>
@@ -179,41 +182,70 @@ $('.js-quiz-app').html(correct);
 function renderFeedbackPageIncorrect() {
   console.log('Generating feedback incorrect view');
   const incorrect = `
-  <div id="feedback-view-correct">
+  <div id="feedback-view-incorrect">
   <ul>
-    <li>${store.questionNumber} of ${store.questions.length}</li>
+    <li>${store.questionNumber + 1} of ${store.questions.length}</li>
     <li>${store.score}/${store.questions.length}</li>
   </ul>
-  <h2>Incorrect! The answer is ${store.questions[0].correctAnswer};</h2>
+  <h2>Incorrect! The answer is ${store.questions[store.questionNumber].correctAnswer}.</h2>
     <form action="/action_page.php">
-    <p>${store.questions[0].question}</p>
-    <input type="radio" id="A" name="answer" value="${store.questions[0].answers[0]}">
-    <label for="A">${store.questions[0].answers[0]}</label>
-    <input type="radio" id="B" name="answer" value="${store.questions[0].answers[1]}">
-    <label for="B">${store.questions[0].answers[1]}</label>
-    <input type="radio" id="C" name="answer" value="${store.questions[0].answers[2]}">
-    <label for="C">${store.questions[0].answers[2]}</label>
-    <input type="radio" id="D" name="answer" value="${store.questions[0].answers[3]}">
-    <label for="D">${store.questions[0].answers[3]}</label>
+    <h3>${store.questions[store.questionNumber].question}</h3>
+    <input type="radio" id="A" name="answer" value="${store.questions[store.questionNumber].answers[0]}">
+    <label for="A">${store.questions[store.questionNumber].answers[0]}</label>
+    <input type="radio" id="B" name="answer" value="${store.questions[store.questionNumber].answers[1]}">
+    <label for="B">${store.questions[store.questionNumber].answers[1]}</label>
+    <input type="radio" id="C" name="answer" value="${store.questions[store.questionNumber].answers[2]}">
+    <label for="C">${store.questions[store.questionNumber].answers[2]}</label>
+    <input type="radio" id="D" name="answer" value="${store.questions[store.questionNumber].answers[3]}">
+    <label for="D">${store.questions[store.questionNumber].answers[3]}</label>
   </form>
   <form id="js-next-question">
   <button type="submit">Next Question</button>
   </form>
 </div>`;
 $('.js-quiz-app').html(incorrect);
-}
+
+//feedback page that displays question right/wrong
+// Retrieve answer identifier of user-checked radio btn
+// Perform check: User answer === Correct answer?
+// Update STORE and render appropriate section
+};
+
 
 // this function should populate the next question when pressed
 
-function generateNextQuestion() {}
-
-function generateAnswerList(answers){
-  //template generator 1
+function generateNextQuestion() {
+  $('body').on('submit', '#js-next-question', (event) => {
+    console.log('Generating next question')
+    event.preventDefault();
+    store.questionNumber++;
+    if(store.questionNumber < store.questions.length){
+      renderQuestionText();
+    }else{
+      renderFinalScore();
+    };
+  })
 }
+
+
+
+function renderFinalScore(){
+const finalScore=`
+<div>
+  <h2>final score: ${store.score}</h2>
+  <form id="js-try-again">
+    <button type="submit">Try Again?</button>
+  </form>
+</div>
+`
+
+  $('.js-quiz-app').html(finalScore);
+};
 
 function handleQuiz() {
   renderStart();
   handleQuizStart();
+  generateNextQuestion();
 }
 
 
