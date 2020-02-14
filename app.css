@@ -6,9 +6,18 @@
   * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
   *
 */
+/*mobile first*/
+
 * {
-  background-color: #add8e6;
-  color: #002627;
+  box-sizing: border-box;
+}
+  
+body {
+  background-color: #d6d6d6;
+  font-family: 'Lucida Sans';
+  color: #4b6319;
+  font-size: 24;
+  font-weight: 600
 }
 
 header {
@@ -44,14 +53,42 @@ li {
 }
 
 #feedback-view-correct {
-  display: inline-block;
+  display: flex;
+  border: 1px solid black;
 }
 
 #feedback-view-incorrect {
-  display: inline-block;
+  display: flex;
+  border: 1px solid black;
 }
 
 #results-view {
   display: flex;
   border: 1px solid black;
+}
+
+/*mobile*/
+
+@media (min-width: 700px) {
+  body {
+   width: 80%;
+   margin: 0 auto;
+  }
+
+  .main-nav-list-item {
+    float:left;
+    width: 25%;
+  }
+
+}
+
+/*desktop*/
+@media (min-width: 1024px) {
+
+  .box {
+  width: 29.33%;
+  float: left;
+  margin-right: 6%;
+  }
+
 }
