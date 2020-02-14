@@ -72,9 +72,10 @@ function renderStart(){
   console.log('Generating start view');
   const start = `
   <div id="start-view">
-  <form id="js-start-quiz">
-  <button type="submit">Start Quiz</button>
-  </form>
+    <h3>How much do you really know?</h3>
+    <form id="js-start-quiz">
+      <button type="submit">Start Quiz</button>
+    </form>
 </div>`;
   $('.js-quiz-app').html(start);
 }
@@ -87,25 +88,25 @@ function renderQuestionText(){
   const question = store.questions[store.questionNumber];
   const questions = `
     <div id="question-view">
-       <ul>
-       <li>${store.questionNumber + 1} of ${store.questions.length}</li>
-     <li>${store.score}/${store.questions.length}</li>
-         </ul>
+      <ul>
+        <li>Question ${store.questionNumber + 1} of ${store.questions.length}</li>
+        <li>Current Score: ${store.score}/${store.questions.length}</li>
+      </ul>
       
-        <form action="/action_page.php">
-          <h3>${question.question}</h3>
-          <input type="radio" id="A" name="answer" value="${question.answers[0]}">
-          <label for="A">${question.answers[0]}</label>
-          <input type="radio" id="B" name="answer" value="${question.answers[1]}">
-          <label for="B">${question.answers[1]}</label>
-          <input type="radio" id="C" name="answer" value="${question.answers[2]}">
-          <label for="C">${question.answers[2]}</label>
-          <input type="radio" id="D" name="answer" value="${question.answers[3]}">
-          <label for="D">${question.answers[3]}</label>
-          </form>
-          <form id="js-question-submit">
+      <form action="/action_page.php">
+        <h3>${question.question}</h3>
+        <input type="radio" id="A" name="answer" value="${question.answers[0]}">
+        <label for="A">${question.answers[0]}</label>
+        <input type="radio" id="B" name="answer" value="${question.answers[1]}">
+        <label for="B">${question.answers[1]}</label>
+        <input type="radio" id="C" name="answer" value="${question.answers[2]}">
+        <label for="C">${question.answers[2]}</label>
+        <input type="radio" id="D" name="answer" value="${question.answers[3]}">
+        <label for="D">${question.answers[3]}</label>
+        </form>
+        <form id="js-question-submit">
           <button type="submit">Submit Answer</button>
-          </form>
+        </form>
       </div>`;
   $('.js-quiz-app').html(questions);
 }
@@ -150,16 +151,16 @@ function renderFeedbackPageCorrect() {
   console.log('Generating feedback correct view');
   const correct = `
   <div id="feedback-view-correct">
-  <ul>
-    <li>${store.questionNumber + 1} of ${store.questions.length}</li>
-    <li>${store.score}/${store.questions.length}</li>
-  </ul>
+    <ul>
+      <li>Question ${store.questionNumber + 1} of ${store.questions.length}</li>
+      <li>Current Score: ${store.score}/${store.questions.length}</li>
+    </ul>
     <h2>Correct!</h2>
 
-  <form id="js-next-question">
-  <button type="submit">Next Question</button>
-  </form>
-</div>`;
+    <form id="js-next-question">
+      <button type="submit">Next Question</button>
+    </form>
+  </div>`;
 $('.js-quiz-app').html(correct);
 }
 
@@ -173,16 +174,16 @@ function renderFeedbackPageIncorrect() {
   console.log('Generating feedback incorrect view');
   const incorrect = `
   <div id="feedback-view-incorrect">
-  <ul>
-    <li>${store.questionNumber + 1} of ${store.questions.length}</li>
-    <li>${store.score}/${store.questions.length}</li>
-  </ul>
-  <h2>Incorrect! The answer is ${store.questions[store.questionNumber].correctAnswer}.</h2>
+    <ul>
+      <li>Question ${store.questionNumber + 1} of ${store.questions.length}</li>
+      <li>Current Score: ${store.score}/${store.questions.length}</li>
+    </ul>
+    <h2>Incorrect! The answer is ${store.questions[store.questionNumber].correctAnswer}.</h2>
 
-  <form id="js-next-question">
-  <button type="submit">Next Question</button>
-  </form>
-</div>`;
+    <form id="js-next-question">
+      <button type="submit">Next Question</button>
+    </form>
+  </div>`;
 $('.js-quiz-app').html(incorrect);
 
 //feedback page that displays question right/wrong
