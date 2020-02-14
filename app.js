@@ -93,16 +93,16 @@ function renderQuestionText(){
         
       <form action="/action_page.php">
         <p>${store.questions[0].question}</p>
-        <input type="radio" id="A" name="answer" value="answer A">
+        <input type="radio" id="A" name="answer" value="${store.questions[0].answers[0]}">
         <label for="A">${store.questions[0].answers[0]}</label>
-        <input type="radio" id="B" name="answer" value="answer B">
+        <input type="radio" id="B" name="answer" value="${store.questions[0].answers[1]}">
         <label for="B">${store.questions[0].answers[1]}</label>
-        <input type="radio" id="C" name="answer" value="answer C">
-        <label for="C">'${store.questions[0].answers[2]}'</label>
-        <input type="radio" id="D" name="answer" value="answer A">
-        <label for="D">'${store.questions[0].answers[3]}'</label>
+        <input type="radio" id="C" name="answer" value="${store.questions[0].answers[2]}">
+        <label for="C">${store.questions[0].answers[2]}</label>
+        <input type="radio" id="D" name="answer" value="${store.questions[0].answers[3]}">
+        <label for="D">${store.questions[0].answers[3]}</label>
       </form>
-      <form id="js-submit-answer">
+      <form id="js-question-submit">
       <button type="submit">Submit Answer</button>
       </form>
     </div>`;
@@ -125,7 +125,7 @@ function handleQuizStart() {
 // Update STORE and render appropriate section
 
 function handleAnswerSubmitted() {
-  $('.js-quiz-app').on('click', '#js-submit-answer', () => {
+  $('.js-quiz-app').on('click', '#js-question-submit', () => {
     event.preventDefault();
     console.log('`handleAnswerSubmitted` ran')
     const selValue = $("input[type='radio']:checked").val();
@@ -135,7 +135,7 @@ function handleAnswerSubmitted() {
       renderFeedbackPageIncorrect();
     }
   });
-}
+};
 
 // this is the function that renders the html code that populates
 // when it is called inside of whatever i call the function that
@@ -154,20 +154,20 @@ function renderFeedbackPageCorrect() {
     <h2>Correct!</h2>
     <form action="/action_page.php">
     <p>${store.questions[0].question}</p>
-    <input type="radio" id="A" name="answer" value="answer A">
+    <input type="radio" id="A" name="answer" value="${store.questions[0].answers[0]}">
     <label for="A">${store.questions[0].answers[0]}</label>
-    <input type="radio" id="B" name="answer" value="answer B">
+    <input type="radio" id="B" name="answer" value="${store.questions[0].answers[1]}">
     <label for="B">${store.questions[0].answers[1]}</label>
-    <input type="radio" id="C" name="answer" value="answer C">
+    <input type="radio" id="C" name="answer" value="${store.questions[0].answers[2]}">
     <label for="C">${store.questions[0].answers[2]}</label>
-    <input type="radio" id="D" name="answer" value="answer A">
+    <input type="radio" id="D" name="answer" value="${store.questions[0].answers[3]}">
     <label for="D">${store.questions[0].answers[3]}</label>
   </form>
   <form id="js-next-question">
   <button type="submit">Next Question</button>
   </form>
 </div>`;
-$('js-quiz-app').html(correct);
+$('.js-quiz-app').html(correct);
 }
 
 // this is the function that renders the html code that populates
@@ -184,16 +184,16 @@ function renderFeedbackPageIncorrect() {
     <li>${store.questionNumber} of ${store.questions.length}</li>
     <li>${store.score}/${store.questions.length}</li>
   </ul>
-  <h2>Incorrect! The answer is ${store.questions[0].correctAnswer}</h2>
+  <h2>Incorrect! The answer is ${store.questions[0].correctAnswer};</h2>
     <form action="/action_page.php">
     <p>${store.questions[0].question}</p>
-    <input type="radio" id="A" name="answer" value="answer A">
+    <input type="radio" id="A" name="answer" value="${store.questions[0].answers[0]}">
     <label for="A">${store.questions[0].answers[0]}</label>
-    <input type="radio" id="B" name="answer" value="answer B">
+    <input type="radio" id="B" name="answer" value="${store.questions[0].answers[1]}">
     <label for="B">${store.questions[0].answers[1]}</label>
-    <input type="radio" id="C" name="answer" value="answer C">
+    <input type="radio" id="C" name="answer" value="${store.questions[0].answers[2]}">
     <label for="C">${store.questions[0].answers[2]}</label>
-    <input type="radio" id="D" name="answer" value="answer A">
+    <input type="radio" id="D" name="answer" value="${store.questions[0].answers[3]}">
     <label for="D">${store.questions[0].answers[3]}</label>
   </form>
   <form id="js-next-question">
