@@ -6,3 +6,52 @@
   * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
   *
 */
+* {
+  background-color: #add8e6;
+  color: #002627;
+}
+
+header {
+  text-align: center;
+}
+
+h1 {
+  display: inline-block;
+}
+
+main {
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  display: flexbox;
+  justify-content: space-between;
+}
+
+li {
+  justify-self: inherit;
+}
+
+#start-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#question-view {
+  display: inline-block;
+}
+
+#feedback-view-correct {
+  display: inline-block;
+}
+
+#feedback-view-incorrect {
+  display: inline-block;
+}
+
+#results-view {
+  display: flex;
+  border: 1px solid black;
+}

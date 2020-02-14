@@ -12,17 +12,16 @@
 </head>
 
 <body>
-  <header>
-    <h1>General Trivia Quiz!</h1>
-  </header>
+  <header></header>
   <main>
-    <div>
+    <div id="start-view">
+      <h1>General Trivia Quiz!</h1>
       <form id="js-start-quiz-form"></form>
       <button type="submit">Start Quiz</button>
     </div>
-    <div>
+    <div id="question-view">
       <ul>
-        <li>1 of 10</li>
+        <li>1 of 5</li>
         <li>0/10</li>
       </ul>
       
@@ -41,7 +40,7 @@
       <button type="submit">Submit Answer</button>
     </div>
 
-    <div>
+    <div id="feedback-view-correct">
       <ul>
         <li>1 of 5</li>
         <li>1/5</li>
@@ -62,7 +61,7 @@
       <button type="submit">Next Question</button>
     </div>
 
-    <div>
+    <div id="feedback-view-incorrect">
       <ul>
         <li>1 of 5</li>
         <li>0/5</li>
@@ -82,7 +81,7 @@
       <form id="js-question-submit"></form>
       <button type="submit">Next Question</button>
     </div>
-    <div>
+    <div id="results-view">
       <ul>
         <li>Complete</li>
         <li>3/5</li>
