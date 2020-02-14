@@ -1,13 +1,15 @@
-/* Your styles should be mobile-first and responsive */
+/*mobile first*/
 
-/** 
-  * If you are unclear on how to utilize a mobile-first, responsive technique to write your CSS, here is an example: 
-  *
-  * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
-  *
-*/
 * {
-  background-color: lightblue;
+  box-sizing: border-box;
+}
+  
+body {
+  background-color: #d6d6d6;
+  font-family: 'Lucida Sans';
+  color: #4b6319;
+  font-size: 24;
+  font-weight: 600
 }
 
 header {
@@ -55,4 +57,27 @@ li {
 #results-view {
   display: flex;
   border: 1px solid black;
+}
+
+@media (min-width: 700px) {
+  body {
+   width: 80%;
+   margin: 0 auto;
+  }
+
+  .main-nav-list-item {
+    float:left;
+    width: 25%;
+  }
+}
+
+/*desktop*/
+@media (min-width: 1024px) {
+
+.box {
+  width: 29.33%;
+  float: left;
+  margin-right: 6%;
+}
+
 }
