@@ -44,7 +44,7 @@ li {
 }
 
 #feedback-view-correct {
-  display: flex;
+  display: inline-block;
 }
 
 #feedback-view-incorrect {

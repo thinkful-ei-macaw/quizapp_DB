@@ -131,10 +131,10 @@ function handleAnswerSubmitted() {
     console.log('`handleAnswerSubmitted` ran')
     const selValue = $("input[type='radio']:checked").val();
     console.log(selValue);
-    if (selValue === `${store.questions[store.questionNumber].correctAnswer}`) {
+    if (selValue === `${store.questions[store.questionNumber].correctAnswer}` && selValue !== undefined) {
       store.score++;
       renderFeedbackPageCorrect();
-    } else if (selValue !== `${store.questions[store.questionNumber].correctAnswer}`) {
+    } else if (selValue !== `${store.questions[store.questionNumber].correctAnswer}` && selValue !== undefined) {
       renderFeedbackPageIncorrect();
     }
 });
@@ -155,17 +155,7 @@ function renderFeedbackPageCorrect() {
     <li>${store.score}/${store.questions.length}</li>
   </ul>
     <h2>Correct!</h2>
-    <form action="/action_page.php">
-    <h3>${store.questions[store.questionNumber].question}</h3>
-    <input type="radio" id="A" name="answer" value="${store.questions[store.questionNumber].answers[0]}">
-    <label for="A">${store.questions[store.questionNumber].answers[0]}</label>
-    <input type="radio" id="B" name="answer" value="${store.questions[store.questionNumber].answers[1]}">
-    <label for="B">${store.questions[store.questionNumber].answers[1]}</label>
-    <input type="radio" id="C" name="answer" value="${store.questions[store.questionNumber].answers[2]}">
-    <label for="C">${store.questions[store.questionNumber].answers[2]}</label>
-    <input type="radio" id="D" name="answer" value="${store.questions[store.questionNumber].answers[3]}">
-    <label for="D">${store.questions[store.questionNumber].answers[3]}</label>
-  </form>
+
   <form id="js-next-question">
   <button type="submit">Next Question</button>
   </form>
@@ -188,17 +178,7 @@ function renderFeedbackPageIncorrect() {
     <li>${store.score}/${store.questions.length}</li>
   </ul>
   <h2>Incorrect! The answer is ${store.questions[store.questionNumber].correctAnswer}.</h2>
-    <form action="/action_page.php">
-    <h3>${store.questions[store.questionNumber].question}</h3>
-    <input type="radio" id="A" name="answer" value="${store.questions[store.questionNumber].answers[0]}">
-    <label for="A">${store.questions[store.questionNumber].answers[0]}</label>
-    <input type="radio" id="B" name="answer" value="${store.questions[store.questionNumber].answers[1]}">
-    <label for="B">${store.questions[store.questionNumber].answers[1]}</label>
-    <input type="radio" id="C" name="answer" value="${store.questions[store.questionNumber].answers[2]}">
-    <label for="C">${store.questions[store.questionNumber].answers[2]}</label>
-    <input type="radio" id="D" name="answer" value="${store.questions[store.questionNumber].answers[3]}">
-    <label for="D">${store.questions[store.questionNumber].answers[3]}</label>
-  </form>
+
   <form id="js-next-question">
   <button type="submit">Next Question</button>
   </form>
