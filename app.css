@@ -29,8 +29,7 @@ main {
 }
 
 #question-view {
-  display: flex;
-  border: 1px solid black;
+  display: inline-block;
 }
 
 #feedback-view-correct {
