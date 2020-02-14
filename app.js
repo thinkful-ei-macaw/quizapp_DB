@@ -75,9 +75,11 @@ function generateStartView() {
   return `
   <div id="start-view">
   <h3>How much do you really know?</h3>
+  <p>
   <form id="js-start-quiz">
-    <button type="submit">Start Quiz</button>
+    <button class="button" type="submit">Start Quiz</button>
   </form>
+  </p>
   </div>
   `;
 }
@@ -87,24 +89,34 @@ function generateQuestionView() {
   const question = store.questions[store.questionNumber];
   return `
     <div id="question-view">
-      <ul>
+      <ul class="tracker">
         <li>Question ${store.questionNumber + 1} of ${store.questions.length}</li>
         <li>Current Score: ${store.score}/${store.questions.length}</li>
       </ul>
       
-      <form action="/action_page.php">
+      <form class="radio" action="/action_page.php">
         <h3>${question.question}</h3>
-        <input type="radio" id="A" name="answer" value="${question.answers[0]}">
-        <label for="A">${question.answers[0]}</label>
-        <input type="radio" id="B" name="answer" value="${question.answers[1]}">
-        <label for="B">${question.answers[1]}</label>
-        <input type="radio" id="C" name="answer" value="${question.answers[2]}">
-        <label for="C">${question.answers[2]}</label>
-        <input type="radio" id="D" name="answer" value="${question.answers[3]}">
-        <label for="D">${question.answers[3]}</label>
+        <ul class="radio">
+          <li class="radio">
+            <input type="radio" id="A" name="answer" value="${question.answers[0]}">
+            <label for="A">${question.answers[0]}</label>
+          </li>
+          <li class="radio">
+            <input type="radio" id="B" name="answer" value="${question.answers[1]}">
+            <label for="B">${question.answers[1]}</label>
+          </li>
+          <li class="radio">
+            <input type="radio" id="C" name="answer" value="${question.answers[2]}">
+            <label for="C">${question.answers[2]}</label>
+          </li>
+          <li class="radio">
+            <input type="radio" id="D" name="answer" value="${question.answers[3]}">
+            <label for="D">${question.answers[3]}</label>
+          </li>
+        </ul>
         </form>
         <form id="js-question-submit">
-          <button type="submit">Submit Answer</button>
+          <button class="button" type="submit">Submit Answer</button>
         </form>
       </div>`;
 }
@@ -113,7 +125,7 @@ function generateFeedbackViewCorrect() {
   console.log('Generating Feedback Correct view');
   return `
   <div id="feedback-view-correct">
-    <ul>
+    <ul class="tracker">
       <li>Question ${store.questionNumber + 1} of ${store.questions.length}</li>
       <li>Current Score: ${store.score}/${store.questions.length}</li>
     </ul>
@@ -129,7 +141,7 @@ function generateFeedbackViewIncorrect() {
   console.log('Generating Feedback Incorrect View');
   return `
   <div id="feedback-view-incorrect">
-    <ul>
+    <ul class="tracker">
       <li>Question ${store.questionNumber + 1} of ${store.questions.length}</li>
       <li>Current Score: ${store.score}/${store.questions.length}</li>
     </ul>
@@ -141,10 +153,12 @@ function generateFeedbackViewIncorrect() {
   </div>`;
 }
 
+
+
 function generateFinalView() {
   console.log('Generate Final View');
   return `
-  <div>
+  <div id="results-view">
     <h2>final score: ${store.score}</h2>
     <form id="js-try-again">
       <button type="submit">Try Again?</button>
