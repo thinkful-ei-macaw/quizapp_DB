@@ -61,16 +61,12 @@ const store = {
     }
   ],
   quizStarted: false,
-  questionNumber: 0,
+  questionNumber: 1,
   score: 0
 };
 
-
-function generateAnswerList(answers){
-  //template generator 1
-}
-
-
+// first function. gets calledback. populates the intial screen
+// with the general trivia quiz title and the start quiz button
 
 function renderStart(){
   console.log('Generating start view');
@@ -83,17 +79,19 @@ function renderStart(){
   $('.js-quiz-app').html(start);
 }
 
+// this function renders the html code that populates when
+// it is called inside of handleQuizStart
+
 function renderQuestionText(){
   console.log('Generating questions view')
   for (let i = 0; i < store.questions.length; i++) {
     
-    let currentScore = 0;
-    let currentQuestion = 1;
+    
     const questions = `
     <div id="question-view">
         <ul>
-          <li>${currentQuestion} of ${store.questions.length}</li>
-          <li>${currentScore}/${store.questions.length}</li>
+          <li>${store.questionNumber} of ${store.questions.length}</li>
+          <li>${store.score}/${store.questions.length}</li>
         </ul>
         
         <form action="/action_page.php">
@@ -110,10 +108,25 @@ function renderQuestionText(){
         <form id="js-question-submit"></form>
         <button type="submit">Submit Answer</button>
       </div>`;
-      $('.js-quiz-app').html(questions);
+    $('.js-quiz-app').html(questions);
   }
 }
 
+// this is the function that runs when the start quiz button
+// is clicked or engaged by the keyboard
+
+function handleQuizStart() {
+  $('.js-quiz-app').on('submit', '#js-start-quiz', function(event) {
+    event.preventDefault();
+    console.log('`handleQuizStart` ran');
+    renderQuestionText();
+  });
+}
+
+
+function generateAnswerList(answers){
+  //template generator 1
+}
 // Event handlers
 function handleAnswerSubmitted() {
   $('.user-controls').on('click', '.submit-answer', () => {
@@ -124,13 +137,7 @@ function handleAnswerSubmitted() {
   });
 }
 
-function handleQuizStart() {
-  $('.js-quiz-app').on('submit', '#js-start-quiz', function(event) {
-    event.preventDefault();
-    console.log('`handleQuizStart` ran');
-    renderQuestionText();
-  });
-}
+
 
 function handleQuiz() {
   renderStart();

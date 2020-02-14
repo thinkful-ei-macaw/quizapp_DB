@@ -22,6 +22,16 @@ main {
   text-align: center;
 }
 
+ul {
+  list-style: none;
+  display: flexbox;
+  justify-content: space-between;
+}
+
+li {
+  justify-self: inherit;
+}
+
 #start-view {
   display: flex;
   justify-content: center;
