@@ -61,7 +61,7 @@ const store = {
     }
   ],
   quizStarted: false,
-  questionNumber: 1,
+  questionNumber: 0,
   score: 0
 };
 
@@ -84,32 +84,32 @@ function renderStart(){
 
 function renderQuestionText(){
   console.log('Generating questions view')
-  for (let i = 0; i < store.questions.length; i++) {
+  
     
-    
+   const question = store.questions[store.questionNumber];
     const questions = `
     <div id="question-view">
         <ul>
           <li>${store.questionNumber} of ${store.questions.length}</li>
           <li>${store.score}/${store.questions.length}</li>
         </ul>
-        
-        <form action="/action_page.php">
-          <p>${store.questions[0].question}</p>
+      
+        <form id="js-question-submit">
+          <p>${question.question}</p>
           <input type="radio" id="A" name="answer" value="answer A">
-          <label for="A">${store.questions[0].answers[0]}</label>
+          <label for="A">${question.answers[0]}</label>
           <input type="radio" id="B" name="answer" value="answer B">
-          <label for="B">${store.questions[0].answers[1]}</label>
+          <label for="B">${question.answers[1]}</label>
           <input type="radio" id="C" name="answer" value="answer C">
-          <label for="C">${store.questions[0].answers[2]}</label>
+          <label for="C">${question.answers[2]}</label>
           <input type="radio" id="D" name="answer" value="answer A">
-          <label for="D">${store.questions[0].answers[3]}</label>
-        </form>
-        <form id="js-question-submit"></form>
-        <button type="submit">Submit Answer</button>
+          <label for="D">${question.answers[3]}</label>
+          <button type="submit">Submit Answer</button>
+          </form>
+        
+        
       </div>`;
-    $('.js-quiz-app').html(questions);
-  }
+  $('.js-quiz-app').html(questions);
 }
 
 // this is the function that runs when the start quiz button
@@ -129,7 +129,16 @@ function generateAnswerList(answers){
 }
 // Event handlers
 function handleAnswerSubmitted() {
-  $('.user-controls').on('click', '.submit-answer', () => {
+  $('body').on('submit', '#js-question-submit', (event) => {
+    console.log('hello world');
+    event.preventDefault();
+    store.questionNumber++;
+    if(store.questionNumber < store.questions.length){
+      renderQuestionText();
+    }else{
+      renderFinalScore();
+    };
+   
     
     // Retrieve answer identifier of user-checked radio btn
     // Perform check: User answer === Correct answer?
@@ -138,7 +147,10 @@ function handleAnswerSubmitted() {
 }
 
 
-
+function renderFinalScore(){
+$('.js-quiz-app').html(`
+<div>final score</div>`)
+};
 function handleQuiz() {
   renderStart();
   handleQuizStart();
