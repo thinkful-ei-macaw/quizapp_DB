@@ -85,6 +85,13 @@ ul.tracker {
   flex-direction: column;
 }
 
+#perfect-score-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 /*tablet*/
 
 @media (min-width: 700px) {
