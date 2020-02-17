@@ -72,7 +72,7 @@ function generateStartView() {
   console.log('Generating Start View');
   return `
   <div id="start-view">
-    <h3>How much do you really know?</h3>
+    <h2>How much do you really know?</h2>
       <form id="js-start-quiz">
         <button class="button" type="submit">Start Quiz</button>
       </form>
@@ -91,7 +91,7 @@ function generateQuestionView() {
         </ul>
       </p>
       <form class="radio" action="/action_page.php">
-        <h3>${store.questions[store.questionNumber].question}</h3>
+        <h2>${store.questions[store.questionNumber].question}</h2>
         <ul class="radio">
           <li class="radio">
             <input type="radio" id="A" name="answer" value="${store.questions[store.questionNumber].answers[0]}">
