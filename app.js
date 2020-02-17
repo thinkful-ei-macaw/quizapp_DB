@@ -8,7 +8,7 @@
 
 const store = {
   // 5 or more questions are required
-  quizzes: [[
+  questions: [
     {
       question: 'What is the Capital of India?',
       answers: [
@@ -60,64 +60,10 @@ const store = {
       correctAnswer: 'Jupiter'
     }
   ],
-  [
-    {
-      question: 'This is just a test',
-      answers: [
-        'Bangladesh',
-        'New Delhi',
-        'Caracas',
-        'Tehran'
-      ],
-      correctAnswer: 'New Delhi'
-    },
-    {
-      question: 'So is this',
-      answers: [
-        'Camels',
-        'Horses',
-        'Giraffes',
-        'Zebras'
-      ],
-      correctAnswer: 'Camels'
-    },
-    {
-      question: 'What year did Steve Jobs die?',
-      answers: [
-        '2019',
-        '2015',
-        '2003',
-        '2012'
-      ],
-      correctAnswer: '2012'
-    },
-    {
-      question: 'What tech company bought Columbia Pictures?',
-      answers: [
-        'Sony',
-        'Apple',
-        'Microsoft',
-        'Panasonic'
-      ],
-      correctAnswer: 'Sony'
-    },
-    {
-      question: 'What planet has the strongest gravity?',
-      answers: [
-        'Jupiter',
-        'Venus',
-        'Pluto',
-        'Saturn'
-      ],
-      correctAnswer: 'Jupiter'
-    }
-  ] ],
+ 
   questionNumber: 0,
   score: 0,
   userAnswer: '',
-  quizNumber: 0,
-  totalScore: 0,
-  totalQuestions: 0
 };
 
 /***********Generate Functions *************/
@@ -126,12 +72,10 @@ function generateStartView() {
   console.log('Generating Start View');
   return `
   <div id="start-view">
-  <h3>How much do you really know?</h3>
-  <p>
-  <form id="js-start-quiz">
-    <button class="button" type="submit">Start Quiz</button>
-  </form>
-  </p>
+    <h3>How much do you really know?</h3>
+      <form id="js-start-quiz">
+        <button class="button" type="submit">Start Quiz</button>
+      </form>
   </div>
   `;
 }
@@ -140,29 +84,30 @@ function generateQuestionView() {
   console.log('Generating Question View');
   return `
     <div id="question-view">
-      <ul class="tracker">
-        <li>Question ${store.questionNumber + 1} of ${store.quizzes[store.quizNumber].length}</li>
-        <li>Current Score: ${store.score}/${store.quizzes[store.quizNumber].length}</li>
-      </ul>
-      
+      <p>
+        <ul class="tracker">
+          <li>Question ${store.questionNumber + 1} of ${store.questions.length}</li>
+          <li>Current Score: ${store.score}/${store.questions.length}</li>
+        </ul>
+      </p>
       <form class="radio" action="/action_page.php">
-        <h3>${store.quizzes[store.quizNumber][store.questionNumber].question}</h3>
+        <h3>${store.questions[store.questionNumber].question}</h3>
         <ul class="radio">
           <li class="radio">
-            <input type="radio" id="A" name="answer" value="${store.quizzes[store.quizNumber][store.questionNumber].answers[0]}">
-            <label for="A">${store.quizzes[store.quizNumber][store.questionNumber].answers[0]}</label>
+            <input type="radio" id="A" name="answer" value="${store.questions[store.questionNumber].answers[0]}">
+            <label for="A">${store.questions[store.questionNumber].answers[0]}</label>
           </li>
           <li class="radio">
-            <input type="radio" id="B" name="answer" value="${store.quizzes[store.quizNumber][store.questionNumber].answers[1]}">
-            <label for="B">${store.quizzes[store.quizNumber][store.questionNumber].answers[1]}</label>
+            <input type="radio" id="B" name="answer" value="${store.questions[store.questionNumber].answers[1]}">
+            <label for="B">${store.questions[store.questionNumber].answers[1]}</label>
           </li>
           <li class="radio">
-            <input type="radio" id="C" name="answer" value="${store.quizzes[store.quizNumber][store.questionNumber].answers[2]}">
-            <label for="C">${store.quizzes[store.quizNumber][store.questionNumber].answers[2]}</label>
+            <input type="radio" id="C" name="answer" value="${store.questions[store.questionNumber].answers[2]}">
+            <label for="C">${store.questions[store.questionNumber].answers[2]}</label>
           </li>
           <li class="radio">
-            <input type="radio" id="D" name="answer" value="${store.quizzes[store.quizNumber][store.questionNumber].answers[3]}">
-            <label for="D">${store.quizzes[store.quizNumber][store.questionNumber].answers[3]}</label>
+            <input type="radio" id="D" name="answer" value="${store.questions[store.questionNumber].answers[3]}">
+            <label for="D">${store.questions[store.questionNumber].answers[3]}</label>
           </li>
         </ul>
         </form>
@@ -176,10 +121,10 @@ function generateFeedbackViewCorrect() {
   console.log('Generating Feedback Correct view');
   return `
   <div id="feedback-view-correct">
-  <ul class="tracker">
-    <li>Question ${store.questionNumber + 1} of ${store.quizzes[store.quizNumber].length}</li>
-    <li>Current Score: ${store.score}/${store.quizzes[store.quizNumber].length}</li>
-  </ul>
+    <ul class="tracker">
+      <li>Question ${store.questionNumber + 1} of ${store.questions.length}</li>
+      <li>Current Score: ${store.score}/${store.questions.length}</li>
+    </ul>
     <h2>Your answer, ${store.userAnswer}, was Correct!</h2>
 
     <form id="js-next-question">
@@ -192,12 +137,12 @@ function generateFeedbackViewIncorrect() {
   console.log('Generating Feedback Incorrect View');
   return `
   <div id="feedback-view-incorrect">
-  <ul class="tracker">
-    <li>Question ${store.questionNumber + 1} of ${store.quizzes[store.quizNumber].length}</li>
-    <li>Current Score: ${store.score}/${store.quizzes[store.quizNumber].length}</li>
-  </ul>
+    <ul class="tracker">
+      <li>Question ${store.questionNumber + 1} of ${store.questions.length}</li>
+      <li>Current Score: ${store.score}/${store.questions.length}</li>
+    </ul>
     <h2>
-    Incorrect! The answer is ${store.quizzes[store.quizNumber][store.questionNumber].correctAnswer}.
+    Incorrect! The answer is ${store.questions[store.questionNumber].correctAnswer}.
     </h2>
     <h3>
     You answered ${store.userAnswer}.
@@ -215,62 +160,13 @@ function generateFinalView() {
   console.log('Generating Final View');
   return `
   <div id="results-view">
-    <h2>Final Score: ${store.score}/${store.quizzes[store.quizNumber].length}</h2>
+    <h2>Final Score: ${store.score}/${store.questions.length}</h2>
     <h3>Would you like to try again?</h3>
     <form id="js-try-again">
       <button type="submit">Try Again</button>
     </form>
   </div>
   `;
-}
-
-function generatePerfectScoreView() {
-  console.log('Generating Perfect Score View');
-  return`
-  <div id="perfect-score-view">
-    <h2>Congratulations! You got ${store.score}/${store.quizzes[store.quizNumber].length} correct!</h2>
-    <h3>Would you like to try again?</h3>
-    <form id="js-try-again">
-      <button type="submit">Try Again</button>
-    </form>
-    <h3>Or you can try a new quiz!</h3>
-    <form id="js-new-quiz">
-      <button type="submit">New Quiz</button>
-    </form>
-  </div>
-`;
-}
-
-function generateSecondFinalView() {
-  console.log('Generating Final View');
-  return `
-  <div id="results-view">
-    <h2>Final Score: ${store.score}/${store.quizzes[store.quizNumber].length}</h2>
-    <h3>Your total score is: ${store.totalScore}/${store.totalQuestions}</h3>
-    <h3>Would you like to try again?</h3>
-    <form id="js-try-again">
-      <button type="submit">Try Again</button>
-    </form>
-  </div>
-  `;
-}
-
-function generateSecondPerfectScoreView() {
-  console.log('Generating Second Perfect Score View');
-  return`
-  <div id="perfect-score-view">
-    <h2>Congratulations! You got ${store.score}/${store.quizzes[store.quizNumber].length} correct!</h2>
-    <h3>Your total score is: ${store.totalScore}/${store.totalQuestions}</h3>
-    <h3>Would you like to try again?</h3>
-    <form id="js-try-again">
-      <button type="submit">Try Again</button>
-    </form>
-    <h3>Or you can try a new quiz!</h3>
-    <form id="js-new-quiz">
-      <button type="submit">New Quiz</button>
-    </form>
-  </div>
-`;
 }
 
 /***********Render Functions **********/
@@ -300,21 +196,6 @@ function renderFinalView(){
   $('.js-quiz-app').html(generateFinalView());
 }
 
-function renderPerfectScoreView() {
-  console.log('Rendering Perfect Score View');
-  $('.js-quiz-app').html(generatePerfectScoreView());
-}
-
-function renderSecondFinalView() {
-  console.log('Rendering Second Final View');
-  $('.js-quiz-app').html(generateSecondFinalView());
-}
-
-function renderSecondPerfectScoreView() {
-  console.log('Rendering Second Perfect Score View');
-  $('.js-quiz-app').html(generateSecondPerfectScoreView());
-}
-
 /***********Handle Functions **********/
 
 // this is the function that runs when the start quiz button
@@ -339,11 +220,10 @@ function handleAnswerSubmitted() {
     const selValue = $('input[type="radio"]:checked').val();
     console.log(selValue);
     store.userAnswer = selValue;
-    if (selValue === `${store.quizzes[store.quizNumber][store.questionNumber].correctAnswer}` && selValue !== undefined) {
+    if (selValue === `${store.questions[store.questionNumber].correctAnswer}` && selValue !== undefined) {
       store.score++;
-      store.totalScore++;
       renderFeedbackViewCorrect();
-    } else if (selValue !== `${store.quizzes[store.quizNumber][store.questionNumber].correctAnswer}` && selValue !== undefined) {
+    } else if (selValue !== `${store.questions[store.questionNumber].correctAnswer}` && selValue !== undefined) {
       renderFeedbackViewIncorrect();
     }
   });
@@ -353,16 +233,9 @@ function handleNextQuestion() {
   $('.js-quiz-app').on('submit', '#js-next-question', (event) => {
     event.preventDefault();
     store.questionNumber++;
-    store.totalQuestions++;
-    if (store.questionNumber < store.quizzes[store.quizNumber].length){
+    if (store.questionNumber < store.questions.length){
       console.log('Rendering Next question');
       renderQuestionView();
-    } else if (store.score === 5 && store.totalQuestions <= 5) {
-      renderPerfectScoreView();
-    } else if (store.score < 5 && store.totalQuestions > 5) {
-      renderSecondFinalView();
-    } else if (store.score === 5 && store.totalQuestions > 5) {
-      renderSecondPerfectScoreView();
     } else {
       renderFinalView();
     }
@@ -374,19 +247,7 @@ function handleTryAgain() {
     event.preventDefault();
     store.score = 0;
     store.questionNumber = 0;
-    store.quizNumber = 0;
     console.log('`handleTryAgain` ran');
-    renderStart();
-  });
-}
-
-function handleNewQuiz() {
-  $('.js-quiz-app').on('submit', '#js-new-quiz', (event) =>{
-    event.preventDefault();
-    store.score = 0;
-    store.questionNumber = 0;
-    store.quizNumber++;
-    console.log('`handleNewQuiz` ran');
     renderStart();
   });
 }
@@ -397,7 +258,6 @@ function handleQuiz() {
   handleNextQuestion();
   handleAnswerSubmitted();
   handleTryAgain();
-  handleNewQuiz();
 }
 
 $(handleQuiz);

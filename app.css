@@ -49,7 +49,7 @@ ul.tracker {
   flex-direction: column;
 }
 
-#question-view ul.radio {
+#question-view form.radio {
   display: flex;
   flex-direction: column;
   list-style: none;
@@ -85,13 +85,6 @@ ul.tracker {
   flex-direction: column;
 }
 
-#perfect-score-view {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
 /*tablet*/
 
 @media (min-width: 700px) {
@@ -99,21 +92,9 @@ ul.tracker {
    width: 80%;
    margin: 0 auto;
   }
-
-  .main-nav-list-item {
-    float:left;
-    width: 25%;
-  }
-
 }
 
 /*desktop*/
 @media (min-width: 1024px) {
-
-  .box {
-  width: 29.33%;
-  float: left;
-  margin-right: 6%;
-  }
 
 }
