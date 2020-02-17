@@ -8,10 +8,10 @@
 */
 /*mobile first*/
 body {
-  background-color: #d6d6d6;
-  font-family: 'Lucida Sans';
-  color: #4b6319;
-  font-size: 24px;
+  background-color: #98fb98;
+  font-family: 'Lucidia Bright';
+  color: #082213;
+  font-size: 18px;
   font-weight: 600;
 }
 
@@ -33,7 +33,12 @@ ul.tracker {
   flex-direction: row;
   justify-content: space-between;
   width: 80%;
+}
 
+img {
+  width: 350px;
+  height: 350px;
+  margin-bottom: 15px;
 }
 
 #start-view {
@@ -92,6 +97,7 @@ ul.tracker {
   body {
    width: 80%;
    margin: 0 auto;
+   font-size: 20px;
    background-color: #e0ffff;
    color: #0000FF;
   }
@@ -100,7 +106,10 @@ ul.tracker {
 /*desktop*/
 @media (min-width: 1024px) {
   body {
-    color: #4b6319;
     background-color: #d6d6d6;
+    font-family: 'Lucida Sans';
+    color: #4b6319;
+    font-size: 24px;
+    font-weight: 600;
   }
 }

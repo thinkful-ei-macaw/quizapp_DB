@@ -126,7 +126,6 @@ function generateFeedbackViewCorrect() {
       <li>Current Score: ${store.score}/${store.questions.length}</li>
     </ul>
     <h2>Your answer, ${store.userAnswer}, was Correct!</h2>
-
     <form id="js-next-question">
       <button type="submit">Continue</button>
     </form>
