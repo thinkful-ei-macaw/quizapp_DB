@@ -11,8 +11,8 @@ body {
   background-color: #d6d6d6;
   font-family: 'Lucida Sans';
   color: #4b6319;
-  font-size: 24;
-  font-weight: 600
+  font-size: 24px;
+  font-weight: 600;
 }
 
 header {
@@ -33,6 +33,7 @@ ul.tracker {
   flex-direction: row;
   justify-content: space-between;
   width: 80%;
+
 }
 
 #start-view {
@@ -61,6 +62,7 @@ ul.tracker {
   justify-content: center;
   width: 90%;
   margin-bottom: 15px;
+  font-size: 18px;
 }
 
 #feedback-view-correct {
@@ -90,10 +92,15 @@ ul.tracker {
   body {
    width: 80%;
    margin: 0 auto;
+   background-color: #e0ffff;
+   color: #0000FF;
   }
 }
 
 /*desktop*/
 @media (min-width: 1024px) {
-
+  body {
+    color: #4b6319;
+    background-color: #d6d6d6;
+  }
 }
