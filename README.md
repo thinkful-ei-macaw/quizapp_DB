@@ -1,1 +1,1 @@
-### Boilerplate app structure for Quiz App project
+This is the quiz app that Brandon Leek and Douglas Miner created as a pair!
