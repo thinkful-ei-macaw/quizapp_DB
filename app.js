@@ -17,7 +17,9 @@ const store = {
         'Caracas',
         'Tehran'
       ],
-      correctAnswer: 'New Delhi'
+      correctAnswer: 'New Delhi',
+      picture: 'https://media.gettyimages.com/photos/bahai-temple-picture-id145789857?s=2048x2048',
+      description: 'Lotus Temple, Bahai house of worship in New Delhi, India'
     },
     {
       question: 'What group of animals is called a caravan?',
@@ -27,7 +29,9 @@ const store = {
         'Giraffes',
         'Zebras'
       ],
-      correctAnswer: 'Camels'
+      correctAnswer: 'Camels',
+      picture: 'https://i2.wp.com/thelincolnite.co.uk/wp-content/uploads/2018/10/Camel-stock-Christmas-Lincoln-BIG.jpg?resize=900%2C505&ssl=1',
+      description: 'A camel with his head turned to the left'
     },
     {
       question: 'What year did Steve Jobs die?',
@@ -37,7 +41,9 @@ const store = {
         '2003',
         '2012'
       ],
-      correctAnswer: '2012'
+      correctAnswer: '2012',
+      picture: 'https://specials-images.forbesimg.com/imageserve/5b8576db31358e0429c734e3/416x416.jpg?background=000000&cropX1=211&cropX2=2381&cropY1=900&cropY2=3072',
+      description: 'Steve Jobs smiling'
     },
     {
       question: 'What tech company bought Columbia Pictures?',
@@ -47,7 +53,9 @@ const store = {
         'Microsoft',
         'Panasonic'
       ],
-      correctAnswer: 'Sony'
+      correctAnswer: 'Sony',
+      picture: 'https://i.ytimg.com/vi/FD5c_r0TJbE/maxresdefault.jpg',
+      description: 'The Sony logo. Sony, make.believe'
     },
     {
       question: 'What planet has the strongest gravity?',
@@ -57,7 +65,9 @@ const store = {
         'Pluto',
         'Saturn'
       ],
-      correctAnswer: 'Jupiter'
+      correctAnswer: 'Jupiter',
+      picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Jupiter%2C_image_taken_by_NASA%27s_Hubble_Space_Telescope%2C_June_2019_-_Edited.jpg/625px-Jupiter%2C_image_taken_by_NASA%27s_Hubble_Space_Telescope%2C_June_2019_-_Edited.jpg',
+      description: 'The planet Jupiter.'
     }
   ],
  
@@ -126,6 +136,7 @@ function generateFeedbackViewCorrect() {
       <li>Current Score: ${store.score}/${store.questions.length}</li>
     </ul>
     <h2>Your answer, ${store.userAnswer}, was Correct!</h2>
+    <img src="${store.questions[store.questionNumber].picture}" alt="${store.questions[store.questionNumber].description}">
     <form id="js-next-question">
       <button type="submit">Continue</button>
     </form>
@@ -143,17 +154,15 @@ function generateFeedbackViewIncorrect() {
     <h2>
     Incorrect! The answer is ${store.questions[store.questionNumber].correctAnswer}.
     </h2>
+    <img src="${store.questions[store.questionNumber].picture}" alt="${store.questions[store.questionNumber].description}">
     <h3>
     You answered ${store.userAnswer}.
     </h3>
-
     <form id="js-next-question">
       <button type="submit">Continue</button>
     </form>
   </div>`;
 }
-
-
 
 function generateFinalView() {
   console.log('Generating Final View');
